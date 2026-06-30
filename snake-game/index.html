@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <meta name="description" content="IPC Snake Game - Collect Makita tools! A fun branded snake game by IPC.">
+    <title>IPC Snake Game - Collect Makita Tools!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Start Screen -->
+    <div id="start-screen" class="screen active">
+        <div class="screen-content">
+            <div class="logo-header">
+                <img src="images/ipc-logo.jpg" alt="IPC Logo" class="header-logo">
+            </div>
+            <h1 class="game-title">SNAKE GAME</h1>
+            <p class="game-subtitle">Collect Makita Power Tools!</p>
+            <div class="tool-showcase">
+                <img src="images/tool1.jpg" alt="Impact Wrench" class="showcase-tool">
+                <img src="images/tool2.jpg" alt="Chainsaw" class="showcase-tool">
+                <img src="images/tool3.jpg" alt="Lawn Mower" class="showcase-tool">
+                <img src="images/tool4.jpg" alt="String Trimmer" class="showcase-tool">
+            </div>
+            <button id="start-btn" class="btn btn-primary" onclick="startGame()">
+                <span class="btn-icon">▶</span> START GAME
+            </button>
+            <div class="controls-hint">
+                <p class="hint-desktop">🎮 Use <kbd>Arrow Keys</kbd> or <kbd>WASD</kbd> to move</p>
+                <p class="hint-mobile">👆 Swipe or use on-screen buttons to move</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <div id="game-header">
+            <div class="header-left">
+                <img src="images/ipc-logo.jpg" alt="IPC" class="game-logo-small">
+            </div>
+            <div class="header-center">
+                <div class="score-display">
+                    <span class="score-label">SCORE</span>
+                    <span id="score" class="score-value">0</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="score-display">
+                    <span class="score-label">BEST</span>
+                    <span id="high-score" class="score-value best">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="canvas-container">
+            <canvas id="game-canvas"></canvas>
+            <!-- Pause overlay -->
+            <div id="pause-overlay" class="overlay hidden">
+                <div class="overlay-content">
+                    <h2>⏸️ PAUSED</h2>
+                    <button class="btn btn-primary" onclick="resumeGame()">RESUME</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div id="mobile-controls">
+            <div class="dpad">
+                <button class="dpad-btn dpad-up" ontouchstart="handleDpad('up', event)" onclick="handleDpad('up', event)">▲</button>
+                <div class="dpad-middle">
+                    <button class="dpad-btn dpad-left" ontouchstart="handleDpad('left', event)" onclick="handleDpad('left', event)">◀</button>
+                    <button class="dpad-btn dpad-center" ontouchstart="handleDpad('pause', event)" onclick="handleDpad('pause', event)">⏸</button>
+                    <button class="dpad-btn dpad-right" ontouchstart="handleDpad('right', event)" onclick="handleDpad('right', event)">▶</button>
+                </div>
+                <button class="dpad-btn dpad-down" ontouchstart="handleDpad('down', event)" onclick="handleDpad('down', event)">▼</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+        <div class="screen-content">
+            <div class="logo-header">
+                <img src="images/ipc-logo.jpg" alt="IPC Logo" class="header-logo">
+            </div>
+            <h1 class="gameover-title">GAME OVER</h1>
+            <div class="final-score-container">
+                <div class="final-score-card">
+                    <span class="final-label">YOUR SCORE</span>
+                    <span id="final-score" class="final-value">0</span>
+                </div>
+                <div class="final-score-card best-card">
+                    <span class="final-label">BEST SCORE</span>
+                    <span id="final-high-score" class="final-value">0</span>
+                </div>
+            </div>
+            <div id="new-high-score" class="new-record hidden">🏆 NEW HIGH SCORE! 🏆</div>
+            <div class="tools-collected">
+                <span class="collected-label">Tools Collected</span>
+                <div id="collected-tools" class="collected-grid"></div>
+            </div>
+            <button class="btn btn-primary" onclick="startGame()">
+                <span class="btn-icon">🔄</span> PLAY AGAIN
+            </button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
