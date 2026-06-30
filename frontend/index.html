@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShipTrack | Customer Transport Tracker</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="ShipTrack is a premium, full-stack Customer Transport Tracker dashboard designed to manage customer orders, cities covered, transport companies, and real-time delivery status.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- App Wrapper -->
+  <div class="app-container">
+
+    <!-- Top Header Bar -->
+    <header class="app-header">
+      <div class="logo-area">
+        <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="3" width="15" height="13"></rect>
+          <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+          <circle cx="5.5" cy="18.5" r="2.5"></circle>
+          <circle cx="18.5" cy="18.5" r="2.5"></circle>
+        </svg>
+        <div>
+          <h1>ShipTrack</h1>
+          <p class="subtitle">Customer Transport &amp; Delivery Log</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button type="button" id="btn-export" class="btn btn-secondary">
+          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Export CSV
+        </button>
+        <button type="button" id="btn-add-customer" class="btn btn-primary">
+          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Add Customer
+        </button>
+      </div>
+    </header>
+
+    <!-- Stats Grid Row -->
+    <section class="stats-row" aria-label="Quick Statistics">
+      <div class="stat-card">
+        <div class="stat-icon-wrapper blue">
+          <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <h2 class="stat-title">Total Customers</h2>
+          <p id="stat-total-customers" class="stat-value">0</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon-wrapper orange">
+          <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <h2 class="stat-title">Transport Companies</h2>
+          <p id="stat-unique-companies" class="stat-value">0</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon-wrapper green">
+          <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 0 0-10 10c0 5.25 10 10 10 10s10-4.75 10-10a10 10 0 0 0-10-10z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <h2 class="stat-title">Cities Covered</h2>
+          <p id="stat-cities-covered" class="stat-value">0</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Data Board -->
+    <main class="data-board">
+
+      <!-- Filter and Search Bar Control Panel -->
+      <section class="controls-panel" aria-label="Search and Filters">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="search-bar" placeholder="Search by name, city, phone, or company...">
+        </div>
+
+        <div class="filter-dropdown-wrapper">
+          <label for="filter-company" class="sr-only">Filter by Transport Company</label>
+          <select id="filter-company">
+            <option value="ALL">All Transport Companies</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Table Wrapper -->
+      <section class="table-container" aria-label="Customer Transport List">
+        <table id="customers-table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Customer Name</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Address</th>
+              <th scope="col">City</th>
+              <th scope="col">Transport Company</th>
+              <th scope="col">Transport Company Contact</th>
+              <th scope="col">GST Number</th>
+              <th scope="col">Location</th>
+              <th scope="col" class="actions-header">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- Data rows injected dynamically -->
+            <tr>
+              <td colspan="10" class="loading-state">
+                <div class="spinner"></div>
+                Loading tracker logs...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Empty State Display -->
+        <div id="empty-state" class="empty-state hidden">
+          <svg class="empty-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+          <h3>No records found</h3>
+          <p>Try searching for a different keyword or add a new customer entry.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Customer Modal (Add / Edit) -->
+  <div id="customer-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title">Add New Customer</h2>
+        <button type="button" id="modal-close" class="modal-close-btn" aria-label="Close modal">
+          <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="customer-form" novalidate>
+        <input type="hidden" id="customer-id">
+
+        <div class="form-grid">
+          <!-- Row 1: Name and Phone -->
+          <div class="form-group">
+            <label for="customer-name">Customer Name <span class="required">*</span></label>
+            <input type="text" id="customer-name" name="name" required placeholder="John Doe">
+            <span class="error-msg" id="err-name"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="customer-phone">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="customer-phone" name="phone" required placeholder="+1 (555) 019-2834">
+            <span class="error-msg" id="err-phone"></span>
+          </div>
+
+          <!-- Row 2: City and Transport Company (with autocompleting datalists) -->
+          <div class="form-group">
+            <label for="customer-city">City <span class="required">*</span></label>
+            <input type="text" id="customer-city" name="city" list="cities-datalist" required placeholder="New York">
+            <span class="error-msg" id="err-city"></span>
+            <datalist id="cities-datalist"></datalist>
+          </div>
+
+          <div class="form-group">
+            <label for="customer-company">Transport Company <span class="required">*</span></label>
+            <input type="text" id="customer-company" name="transportCompany" list="companies-datalist" required placeholder="FedEx / DHL">
+            <span class="error-msg" id="err-company"></span>
+            <datalist id="companies-datalist"></datalist>
+          </div>
+
+          <!-- Row 3: Transport Company Contact and GST Number -->
+          <div class="form-group">
+            <label for="customer-company-contact">Transport Company Contact <span class="optional">(Optional)</span></label>
+            <input type="text" id="customer-company-contact" name="transportCompanyContact" placeholder="Contact number or email">
+          </div>
+
+          <div class="form-group">
+            <label for="customer-gst">GST Number <span class="optional">(Optional)</span></label>
+            <input type="text" id="customer-gst" name="gstNumber" placeholder="e.g. 22AAAAA0000A1Z5">
+          </div>
+
+          <!-- Row 4: Location -->
+          <div class="form-group full-width">
+            <label for="customer-location">Location <span class="optional">(Optional)</span></label>
+            <input type="text" id="customer-location" name="location" placeholder="e.g. Warehouse A / City Center">
+          </div>
+
+          <!-- Row 5: Address -->
+          <div class="form-group full-width">
+            <label for="customer-address">Address <span class="optional">(Optional)</span></label>
+            <textarea id="customer-address" name="address" rows="3" placeholder="123 Shipping Lane, Apt 4B"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="btn-cancel" class="btn btn-secondary">Cancel</button>
+          <button type="submit" id="btn-submit" class="btn btn-primary">Save Entry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification System Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- JS Controller -->
+  <script src="app.js"></script>
+</body>
+</html>
+

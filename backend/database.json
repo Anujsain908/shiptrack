@@ -1,0 +1,62 @@
+[
+  {
+    "id": "local_1782385375460_vzaz7xvh0",
+    "name": "mohini didi",
+    "phone": "4465464416",
+    "address": "dfghuufddfgfdsf",
+    "city": "jaipurfsdf",
+    "transportCompany": "gg companyfdssd",
+    "transportCompanyContact": "+91 99999 8fsdf8888",
+    "gstNumber": "08BBBBB2222fsdffsdfB2Z2",
+    "location": "Jaipur Hubfdsf",
+    "createdAt": "2026-06-25T11:02:55.460Z"
+  },
+  {
+    "id": "local_1782385399720_fwsma6qa1",
+    "name": "anuj sain",
+    "phone": "595154598585",
+    "address": "eefghjer",
+    "city": "jaipur",
+    "transportCompany": "abc company",
+    "transportCompanyContact": "",
+    "gstNumber": "",
+    "location": "Pending",
+    "createdAt": "2026-06-25T11:03:19.720Z"
+  },
+  {
+    "id": "local_1782385438594_tnakqsd3n",
+    "name": "viveka",
+    "phone": "555545554",
+    "address": "sgdhfjrtytteyt",
+    "city": "delhi",
+    "transportCompany": "xyz cmany",
+    "transportCompanyContact": "",
+    "gstNumber": "",
+    "location": "In Transit",
+    "createdAt": "2026-06-25T11:03:58.595Z"
+  },
+  {
+    "id": "local_1782816405967_q6nyl79hw",
+    "name": "Jane Miller",
+    "phone": "9876543210",
+    "address": "456 Express way",
+    "city": "Mumbai",
+    "transportCompany": "Blue Dart",
+    "transportCompanyContact": "support@bluedart.com",
+    "gstNumber": "27AAAAA1111A1Z1",
+    "location": "Dock 1",
+    "createdAt": "2026-06-30T10:46:45.979Z"
+  },
+  {
+    "id": "local_1782817307622_depa77kdu",
+    "name": "fghghghrf",
+    "phone": "gffsdgdfs",
+    "address": "",
+    "city": "dsfsdf",
+    "transportCompany": "fdsfsdf",
+    "transportCompanyContact": "sdfsdff",
+    "gstNumber": "dsf",
+    "location": "fdsfsdf",
+    "createdAt": "2026-06-30T11:01:47.631Z"
+  }
+]
